@@ -5,7 +5,7 @@ const pool = require("./db");
 
 //middleware
 app.use(cors());
-app.use(express.json()); // basically used to get data in req.body as json
+app.use(express.json()); // basically used to get data in req.body as to parse to json format
 
 //Routes
 //create a todo
@@ -45,7 +45,7 @@ app.put("/todos/:id", async (req, res) => {
     const { id } = req.params;
     const { description } = req.body;
     const updatetodo = await pool.query(
-      "Update todo set description=$1 where id =$2",
+      "UPDATE todo SET description=$1 where todo_id =$2",
       [description, id],
     );
     res.json("Todo was updated");
